@@ -1,0 +1,104 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    position: relative;
+    background-color: #102754;
+    font-family: 'Poppins', sans-serif;
+}
+.navbar-nav{
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+}
+.nav-link, .navbar-brand{
+    cursor: pointer !important;
+}
+.page-section{
+    padding: 32px;
+}
+#authBox{
+    padding: 0px 12px;
+    border-radius: 10px;
+    background: #453cc9;
+    color: #fff;
+}
+#contactBox{
+    border-radius: 10px;
+    background: rgba(84,50,16,0.3);
+    color: #fff;
+}
+.form-header {
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+.form-header h2{
+    font-weight: 600;
+}
+.auth-link{
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+.auth-link:hover{
+    text-decoration: underline;
+    color: #fff;
+}
+.home-auth-button{
+    text-align: center;
+    text-decoration: none;
+    color: #FBF8F5;
+    background-color: #8c61ff;
+    margin: 12px;
+    padding: 8px;
+    width: 120px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+/* utils */
+.error-msg{
+    color: #F5486C;
+    font-weight: bold;
+}
+.home-auth-button:hover{
+    background-color: #7F50FD;
+    color: #FBF8F5;
+}
+.btn-auth{
+    border-radius: 8px;
+    background: #22aff1;
+    color: #fff;
+}
+.btn-auth:hover{
+    background-color: #1EA4E3;
+    color: #fff;
+}
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.typewrite{
+    width: 22ch;
+    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #fff;
+}
+@keyframes typing {
+    from{
+        width: 0
+    }
+}
+
+@keyframes blink {
+    50%{
+        border-color: transparent;
+    }
+}

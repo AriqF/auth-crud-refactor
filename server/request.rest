@@ -1,0 +1,50 @@
+GET http://localhost:5000/users
+
+###
+POST http://localhost:5000/register
+Content-Type: application/json
+
+{
+    "fname": "amon",
+    "lname": "kou",
+    "username": "amon12",
+    "email": "amon21@gmail.com",
+    "password": "amon2611",
+    "confirmPassword": "amon2611"
+}
+
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "amon21@gmail.com",
+    "password": "amon2611"
+}
+
+###
+GET http://localhost:5000/user/edit/ariqfachry
+
+###
+GET http://localhost:5000/contacts?userId=9
+# Content-Type: application/json
+
+# {
+#     "uid": "9"
+# }
+
+
+###
+POST http://localhost:5000/add-contact
+Content-Type: application/json
+
+{
+    "fname": "amon",
+    "lname": "kou",
+    "email": "amonkou@gmail.com",
+    "phoneNum": "0827352312",
+    "userId": "9"
+}
+
+###
+GET http://localhost:5000/contact?id=1&userId=9
