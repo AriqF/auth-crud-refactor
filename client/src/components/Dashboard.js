@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUsers();
-  }, [])
+  }, []);
 
   const axiosJWT = axios.create();
 
@@ -58,6 +58,7 @@ const Dashboard = () => {
               <thead>
                 <tr>
                   <th scope="col">#</th>
+                  <th scope="col">ID</th>
                   <th scope="col">First Name</th>
                   <th scope="col">Last Name</th>
                   <th scope="col">Username</th>
@@ -66,15 +67,14 @@ const Dashboard = () => {
               </thead>
               <tbody>
                 {users.map((user, index) => (
-                    <>
-                      <tr key={user.id}>
-                          <td>{index + 1}</td>
-                          <td>{user.fname}</td>
-                          <td>{user.lname}</td>
-                          <td>{user.username}</td>
-                          <td>{user.email}</td>
-                      </tr>
-                    </>
+                    <tr key={user.id}>
+                        <td>{index + 1}</td>
+                        <td>{user.id}</td>
+                        <td>{user.fname}</td>
+                        <td>{user.lname}</td>
+                        <td>{user.username}</td>
+                        <td>{user.email}</td>
+                    </tr>
                   ))}
               </tbody>
           </table>
@@ -87,4 +87,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Dashboard;

@@ -33,7 +33,7 @@ const Login = () => {
                     <div className="card w-50 mx-auto text-center" id="authBox">
                         <div className="card-body">
                            <form onSubmit={Auth}>
-                               <p className="text-center">{msg}</p>
+                               <p className="text-center error-msg">{msg}</p>
                                <div className="form-header text-center">
                                    <h2>Login</h2>
                                    <a className="auth-link badge" onClick={() => navigate('/register')}>Don't have an account, Register</a>

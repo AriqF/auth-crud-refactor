@@ -65,6 +65,7 @@ body{
 .error-msg{
     color: #F5486C;
     font-weight: bold;
+    text-transform: capitalize;
 }
 .home-auth-button:hover{
     background-color: #7F50FD;

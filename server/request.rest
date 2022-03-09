@@ -29,11 +29,6 @@ GET http://localhost:5000/user/edit/ariqfachry
 GET http://localhost:5000/contacts?userId=9
 # Content-Type: application/json
 
-# {
-#     "uid": "9"
-# }
-
-
 ###
 POST http://localhost:5000/add-contact
 Content-Type: application/json
@@ -47,4 +42,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/contact?id=1&userId=9
+GET http://localhost:5000/contact/4
+
+###
+DELETE http://localhost:5000/contact/delete/1

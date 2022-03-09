@@ -5,9 +5,10 @@ import Navbar from "./components/Navbar";
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import './index.css';
-import AddContact from "./components/AddContact";
 import UserEdit from "./components/UserEdit";
+import ContactAdd from "./components/ContactAdd";
 import ContactList from "./components/ContactList";
+import ContactEdit from "./components/ContactEdit";
 
 
 //1:01:18
@@ -19,9 +20,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<><Navbar /> <Dashboard /></>} />
-        <Route path="/contacts" element={<><Navbar /> <ContactList /></>} />
-        <Route path="/add-contact" element={<><Navbar /> <AddContact /></>} />
         <Route path="/user-settings/:username" element={<><Navbar /> <UserEdit /></>} />
+        <Route path="/contacts" element={<><Navbar /> <ContactList /></>} />
+
+        <Route path="/add-contact" element={<><Navbar /> <ContactAdd /></>} />
+        <Route path="/contact/:id" element={<><Navbar /> <ContactEdit /></>} />
       </Routes>
     </BrowserRouter>
   );

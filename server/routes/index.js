@@ -20,18 +20,17 @@ const router = express.Router();
 router.get('/users', verifyToken, getUsers);
 router.get('/user/:username', getUserByUsername);
 router.patch('/user/edit/:id', updateUser);
-// router.get('/users', verifyToken, getUsers);
 router.post('/register', Register);
 router.post('/login', Login);
 router.get('/token', refreshToken);
 router.delete('/logout', Logout);
 
 //contact route
-router.get('/contact', getContactById);
+router.get('/contact/:id', getContactById);
 router.get('/contacts', getContacts);
 router.post('/add-contact', addContact);
 router.patch('/contact/update', updateContact);
-router.delete('/contact/delete', deleteContact);
+router.delete('/contact/delete/:id', deleteContact);
 
 
 

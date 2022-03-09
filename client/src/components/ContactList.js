@@ -59,21 +59,32 @@ const ContactList = () => {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
       }).then( async (result) => {
-        const response = await axios.delete('http://localhost:5000/contact/delete', {
-          params: {
-            id: id,
-            userId: uid
+        if(result.isConfirmed){
+          const response = await axios.delete(`http://localhost:5000/contact/delete/${id}`);
+          // console.log(response.status)
+          if (response.status === 200) {
+            Swal.fire(
+              'Deleted!',
+              'Contact has been deleted.',
+              'success'
+            ).then(() => {
+              window.location.reload(1);
+              // navigate('/contacts');
+            });
           }
-        });
-        // console.log(response.status)
-        if (response.status === 200) {
-          Swal.fire(
-            'Deleted!',
-            'Contact has been deleted.',
-            'success'
-          ).then(() => {
-            navigate('/dashboard');
-          })
+          else if (response.status !== 200) {
+            swal.fire(
+              'Cancelled',
+              'Oops.. an error occured!',
+              'error'
+            );
+          }
+        } else if(result.dismiss === Swal.DismissReason.cancel){
+          swal.fire(
+            'Cancelled',
+            'Contact deletion has been cancelled',
+            'error'
+          );
         }
       })
     } catch (error) {
@@ -92,6 +103,7 @@ const ContactList = () => {
               <thead>
                 <tr>
                   <th scope="col">#</th>
+                  <th scope="col">CID</th>
                   <th scope="col">First Name</th>
                   <th scope="col">Last Name</th>
                   <th scope="col">Email</th>
@@ -101,30 +113,28 @@ const ContactList = () => {
               </thead>
               <tbody>
                 {contacts.map((contact, index) => (
-                    <>
-                      <tr key={contact.id}>
-                          <td>{index + 1}</td>
-                          <td>{contact.fname}</td>
-                          <td>{contact.lname}</td>
-                          <td>{contact.email}</td>
-                          <td>{contact.phoneNum}</td>
-                          <td>
-                            <div className="row">
-                              <div className="col-6">
-                                <button className="badge btn btn-info">
-                                  Edit
-                                </button>  
-                              </div>  
-                              <div className="col-6">
-                                <button className="badge btn btn-danger" onClick={(() => deleteContact(contact.id))}>
-                                  Delete
-                                </button>  
-                              </div>  
-                            </div>
-                          </td>
-
-                      </tr>
-                    </>
+                  <tr key={contact.id}>
+                      <td>{index + 1}</td>
+                      <td>{contact.id}</td>
+                      <td>{contact.fname}</td>
+                      <td>{contact.lname}</td>
+                      <td>{contact.email}</td>
+                      <td>{contact.phoneNum}</td>
+                      <td>
+                        <div className="row">
+                          <div className="col-6">
+                            <button className="badge btn btn-info" onClick={(() => navigate(`/contact/${contact.id}`))}>
+                              Edit
+                            </button>  
+                          </div>  
+                          <div className="col-6">
+                            <button className="badge btn btn-danger" onClick={(() => deleteContact(contact.id))}>
+                              Delete
+                            </button>  
+                          </div>  
+                        </div>
+                      </td>
+                  </tr>
                   ))}
               </tbody>
             </table>

@@ -1,11 +1,11 @@
-import Contact from '../models/ContactModel.js';
+import Contacts from '../models/ContactModel.js';
 import db from "../config/database.js";
 import { QueryTypes } from 'sequelize';
 
 export const getContacts = async(req, res) => {
     try {
         const userId = req.query.userId;
-        const contacts = await db.query(`SELECT fname, lname, email, phoneNum FROM contacts WHERE userId = ${userId};`, {
+        const contacts = await db.query(`SELECT id, fname, lname, email, phoneNum FROM contacts WHERE userId = ${userId};`, {
             type: QueryTypes.SELECT
         });
         res.json(contacts);
@@ -19,21 +19,22 @@ export const getContacts = async(req, res) => {
 
 export const getContactById = async(req, res) => {
     try {
-        const userId = req.query.userId;
-        const contact = await Contact.findOne({
-            attributes: {id, fname, lname, email, phoneNum, userId},
-            where: { 
-                id: req.query.id,
-                userId: userId
-            }
-        });
+        // const userId = req.params.userId;
+        // const contact = await Contacts.findOne({
+        //     attributes: {id, fname, lname, email, phoneNum, userId},
+        //     where: { 
+        //         id: req.query.id,
+        //         userId: userId
+        //     }
+        // });
+        const contact = await db.query(`SELECT fname, lname, email, phoneNum FROM contacts WHERE id = ${req.params.id};`)
         if(!contact){
             return res.status(404).json({msg: "contact not found!"});
         }
-        res.json(contact);
+        res.json(contact[0]);
     } catch (error) {
         console.error(error);  
-        res.status(404).json({msg: `${error} | body.uid = ${req.body.uid}`});      
+        res.status(404).json({msg: `${error} | id = ${req.query.id}`});      
     }
 }
 
@@ -41,7 +42,7 @@ export const addContact = async(req, res) => {
     const { fname, lname, email, phoneNum, userId } = req.body;
     console.log(`userID => ${userId}`);
     try {
-        await Contact.create({
+        await Contacts.create({
             fname: fname,
             lname: lname,
             email: email,
@@ -57,7 +58,7 @@ export const addContact = async(req, res) => {
 
 export const updateContact = async (req, res) => {
     try {
-        await Contact.update(req.body, {
+        await Contacts.update(req.body, {
             where: {
                 id: req.params.id
             }
@@ -70,7 +71,7 @@ export const updateContact = async (req, res) => {
 
 export const deleteContact = async (req, res) => {
     try {
-        await Contact.destroy({
+        await Contacts.destroy({
             where: {
                 id: req.params.id
             }
